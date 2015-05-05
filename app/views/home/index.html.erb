@@ -1,0 +1,61 @@
+<script type="text/javascript">
+  ShopifyApp.ready(function(){
+    ShopifyApp.Bar.initialize({
+      title: "Home app",
+      icon: "<%= asset_path('faveicon.png') %>"
+    });
+  });
+</script>
+<h3>Lists product in <%=@shop%> Shop</h3>
+<table class="table">
+<thead>
+  <tr>
+    <th>Product Id</th>
+    <th>Product Name</th>
+    <th>Price</th>
+    <th>Type</th>
+  </tr>
+</thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td>
+          <a href='http://<%="#{@shop_session.url}/products/#{product.handle}"%>' target="_blank"> <%= product.id %> </a>
+        </td>
+        <td>
+          <a href='http://<%="#{@shop_session.url}/products/#{product.handle}"%>' target="_blank"> <%= product.title %> </a>
+        </td>
+        <td><%= product.price_range  %></td>
+        <td><%= product.vendor %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Product views</h3>
+
+<table class="table">
+<thead>
+  <tr>
+    <th>Product Id</th>
+    <th>Review</th>
+    <th>Shop Name</th>
+  </tr>
+</thead>
+  <tbody>
+
+    <% @counters.each do |product| %>
+      <tr>
+        <td>
+           <%= product.productId %>
+        </td>
+        <td>
+         <%= product.productCount %>
+        </td>
+        <td>
+         <%= product.shopName %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
